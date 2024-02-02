@@ -1,7 +1,7 @@
 const TelegramBot = require('node-telegram-bot-api');
 
 // replace the value below with the Telegram token you receive from @BotFather
-const token = '6230336662:AAGVQe8AqD9bvcByjkgBq6ZqVQ69TsviETk';
+const token = '6881296782:AAFDbdEWIkxE1uCaND64LxqOk-mAbFuNZQ0';
 
 // Create a bot instance
 const bot = new TelegramBot(token, { polling: true });
@@ -40,7 +40,7 @@ bot.onText(/\/start/, (msg) => {
 
   bot.getChatMember(`@MedicalQuizzesTeam`, userId).then((result) => {
     if (result.status === 'member' || result.status === 'creator' || result.status === 'administrator') {
-      bot.sendMessage(chatId, 'Please select a stage', mainMenu);
+      bot.sendMessage(chatId, 'Please select a Semester', mainMenu);
     } else {
       bot.sendMessage(chatId, 'Please subscribe to the MedicalQuizzesTeam channel to use this bot. t.me/MedicalQuizzesTeam');
     }
