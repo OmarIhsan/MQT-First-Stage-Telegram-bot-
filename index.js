@@ -37,8 +37,25 @@ bot.onText(/\/start/, (msg) => {
   const chatId = msg.chat.id;
   const userId = msg.from.id;
   const channelName = "MedicalQuizzesTeam";
-  bot.sendMessage(chatId, "Please select a Semester", mainMenu);
-    
+
+  bot
+    .getChatMember(`@MedicalQuizzesTeam`, userId)
+    .then((result) => {
+      if (
+        result.status === "member" ||
+        result.status === "creator" ||
+        result.status === "administrator"
+      ) {
+        bot.sendMessage(chatId, "Please select a Semester", mainMenu);
+      } else {
+        bot.sendMessage(chatId, "Please select a Semester", mainMenu);
+      }
+    })
+    .catch((error) => {
+      console.log(error);
+      bot.sendMessage(chatId, "Please select a Semester", mainMenu);
+    });
+});
 
 bot.onText(/1st Semester/, (msg) => {
   const chatId = msg.chat.id;
