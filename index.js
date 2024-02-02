@@ -37,32 +37,8 @@ bot.onText(/\/start/, (msg) => {
   const chatId = msg.chat.id;
   const userId = msg.from.id;
   const channelName = "MedicalQuizzesTeam";
-
-  bot
-    .getChatMember(`@MedicalQuizzesTeam`, userId)
-    .then((result) => {
-      if (
-        result.status === "member" ||
-        result.status === "creator" ||
-        result.status === "administrator"
-      ) {
-        bot.sendMessage(chatId, "Please select a topic", mainMenu);
-      } else {
-        bot.sendMessage(
-          chatId,
-          "Please subscribe to the MedicalQuizzesTeam channel to use this bot. t.me/MedicalQuizzesTeam",
-        );
-      }
-    })
-    .catch((error) => {
-      console.log(error);
-      bot.sendMessage(
-        chatId,
-        "An error occurred while checking channel subscription.",
-      );
-    });
-});
-
+  bot.sendMessage(chatId, "Please select a Semester", mainMenu);
+    
 
 bot.onText(/1st Semester/, (msg) => {
   const chatId = msg.chat.id;
