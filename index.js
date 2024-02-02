@@ -7,15 +7,24 @@ const token = '6230336662:AAGVQe8AqD9bvcByjkgBq6ZqVQ69TsviETk';
 const bot = new TelegramBot(token, { polling: true });
 const channelChatId = 'MedicalQuizzesTeam';
 
-const server = require('./server.js');
-server();
+const express = require("express"); // Import the express library
+const app = express(); // Launch the express app
+const http = require("http"); // Import the http library
+const server = http.createServer(app); // Create the server
 
+/** Replying to request at '/' */
+app.get("/", (req, res) => {
+  res.send("Testing...");
+});
+
+server.listen(3000, () => {}); // Opening the 3000 port
+// Define the initial keyboard 
 // Define the initial keyboard
 const mainMenu = {
   reply_markup: {
     keyboard: [
-      ['1st Stage'],
-      ['2nd Stage'],
+      ['1st Semester'],
+      ['2nd Semester'],
     ],
     resize_keyboard: true,
     one_time_keyboard: true,
@@ -43,41 +52,8 @@ bot.onText(/\/start/, (msg) => {
 });
 //1st St.
 
-bot.onText(/1st Stage/, (msg) => {
-  const chatId = msg.chat.id;
 
-  const mainKeyboard = {
-    reply_markup: {
-      keyboard: [
-        ['1st St. - 1st Sem.'],
-        ['1st St. - 2nd Sem.'],
-      ],
-      resize_keyboard: true,
-    },
-  };
-
-  bot.sendMessage(chatId, 'Please select a Semester:', mainKeyboard);
-
-});
-
-bot.onText(/Back to 1st Stage/, (msg) => {
-  const chatId = msg.chat.id;
-
-  const mainKeyboard = {
-    reply_markup: {
-      keyboard: [
-        ['1st St. - 1st Sem.'],
-        ['1st St. - 2nd Sem.'],
-      ],
-      resize_keyboard: true,
-    },
-  };
-
-  bot.sendMessage(chatId, 'Please select a Semester:', mainKeyboard);
-
-});
-
-bot.onText(/1st St. - 1st Sem./, (msg) => {
+bot.onText(/1st Semester/, (msg) => {
   const chatId = msg.chat.id;
 
   const mainKeyboard = {
@@ -97,7 +73,7 @@ bot.onText(/1st St. - 1st Sem./, (msg) => {
 });
 
 
-bot.onText(/Back to 1st Sem./, (msg) => {
+bot.onText(/Back to 1st Semester/, (msg) => {
   const chatId = msg.chat.id;
 
   const mainKeyboard = {
@@ -106,7 +82,7 @@ bot.onText(/Back to 1st Sem./, (msg) => {
         ['1.Anatomy', '1.Chemistry', '1.Biology'],
         ['1.Physics', '1.Computer', '1.English'],
         ['1.Medical Terminology'],
-        ['Back to 1st Stage', 'Back to MainMenu']
+        ['Back to MainMenu']
       ],
       resize_keyboard: true,
     },
@@ -125,7 +101,7 @@ bot.onText(/1.Anatomy/, (msg) => {
       keyboard: [
         ['Anatomy Introduction'],
         ['Anatomy Upper Limb'],
-        ['Back to 1st Sem.','Back to MainMenu']
+        ['Back to 1st Semester','Back to MainMenu']
       ],
       resize_keyboard: true,
     },
@@ -142,7 +118,7 @@ bot.onText(/Back to 1.Anatomy/, (msg) => {
       keyboard: [
         ['Anatomy Introduction'],
         ['Anatomy Upper Limb'],
-        ['Back to 1st Sem.','Back to MainMenu']
+        ['Back to 1st Semester','Back to MainMenu']
       ],
       resize_keyboard: true,
     },
@@ -269,7 +245,7 @@ bot.onText(/1.Computer/, (msg) => {
         ['1.IT'],
         ['1.Windows'],
         ['1.Word'],
-        ['Back to 1st Sem.','Back to MainMenu']
+        ['Back to 1st Semester','Back to MainMenu']
       ],
       resize_keyboard: true,
     },
@@ -301,7 +277,7 @@ bot.onText(/1.Medical Terminology/, (msg) => {
 
 
 
-bot.onText(/1st St. - 2nd Sem./, (msg) => {
+bot.onText(/2nd Semester/, (msg) => {
   const chatId = msg.chat.id;
 
   const mainKeyboard = {
@@ -310,7 +286,7 @@ bot.onText(/1st St. - 2nd Sem./, (msg) => {
         ['-Anatomy', '-Chemistry', '-Biology'],
         ['-Physics', '-Computer', '-English'],
         ['-Foundations in Medicine'],
-        ['Back to 1st Stage', 'Back to MainMenu']
+        ['Back to MainMenu']
       ],
       resize_keyboard: true,
     },
@@ -321,7 +297,7 @@ bot.onText(/1st St. - 2nd Sem./, (msg) => {
 });
 
 
-bot.onText(/Back to 2nd Sem./, (msg) => {
+bot.onText(/Back to 2nd Semester/, (msg) => {
   const chatId = msg.chat.id;
 
   const mainKeyboard = {
@@ -487,7 +463,7 @@ bot.on('message', (msg) => {
           ['Analytical Chemistry'],
           ['Inorganic Chemistry'],
           ['Pollution'],
-          ['Back to 2nd Sem.', 'Back to MainMenu']
+          ['Back to 2nd Semester', 'Back to MainMenu']
         ],
         resize_keyboard: true,
         one_time_keyboard: true,
@@ -668,7 +644,7 @@ bot.on('message', (msg) => {
           ['Genetics'],
           ['Biosafety'],
           ['Histology'],
-          ['Back to 2nd Sem.', 'Back to MainMenu']
+          ['Back to 2nd Semester', 'Back to MainMenu']
         ],
         resize_keyboard: true,
         one_time_keyboard: true,
@@ -836,7 +812,7 @@ bot.on('message', (msg) => {
           ['Physics Electricity in the Body pt. 2'],
           ['Physics Cardiovascular System pt. 1'],
           ['Physics Cardiovascular System pt. 2'],
-          ['Back to 2nd Sem.', 'Back to MainMenu']
+          ['Back to 2nd Semester', 'Back to MainMenu']
 
         ],
         resize_keyboard: true,
@@ -880,7 +856,7 @@ bot.on('message', (msg) => {
           ['Foundations in Medicine Lec. 4'],
           ['Foundations in Medicine Lec. 5'],
           ['Foundations in Medicine Lec. 6'],
-          ['Back to 2nd Sem.', 'Back to MainMenu']
+          ['Back to 2nd Semester', 'Back to MainMenu']
         ],
         resize_keyboard: true,
         one_time_keyboard: true,
@@ -934,7 +910,7 @@ bot.on('message', (msg) => {
           ['English Lec. 13'],
           ['English Lec. 14'],
           ['English Lec. 15 & 16'],
-          ['Back to 2nd Sem.', 'Back to MainMenu']
+          ['Back to 2nd Semester', 'Back to MainMenu']
 
         ],
         resize_keyboard: true,
@@ -986,7 +962,7 @@ bot.on('message', (msg) => {
           ['Word'],
           ['PowerPoint'],
           ['Excel'],
-          ['Back to 2nd Sem.', 'Back to MainMenu']
+          ['Back to 2nd Semester', 'Back to MainMenu']
         ],
         resize_keyboard: true,
         one_time_keyboard: true,
@@ -1096,8 +1072,8 @@ bot.onText(/Back to MainMenu/, (msg) => {
   const mainKeyboard = {
     reply_markup: {
       keyboard: [
-        ['1st Stage'],
-        ['2nd Stage'],
+        ['1st Semester'],
+        ['2nd Semester'],
       ],
       resize_keyboard: true,
     },
@@ -1116,7 +1092,7 @@ bot.onText(/-Back to Anatomy/, (msg) => {
       keyboard: [
         ['Thorax'],
         ['Lower Limb'],
-        ['Back to 2nd Sem.', 'Back to MainMenu']
+        ['Back to 2nd Semester', 'Back to MainMenu']
       ],
       resize_keyboard: true,
     },
@@ -1139,7 +1115,7 @@ bot.onText(/-Back to Chemistry/, (msg) => {
         ['Analytical Chemistry'],
         ['Inorganic Chemistry'],
         ['Pollution'],
-        ['Back to 2nd Sem.', 'Back to MainMenu']
+        ['Back to 2nd Semester', 'Back to MainMenu']
       ],
       resize_keyboard: true,
     },
@@ -1159,7 +1135,7 @@ bot.onText(/-Back to Biology/, (msg) => {
         ['Genetics'],
         ['Biosafety'],
         ['Histology'],
-        ['Back to 2nd Sem.', 'Back to MainMenu']
+        ['Back to 2nd Semester', 'Back to MainMenu']
       ],
       resize_keyboard: true,
     },
@@ -1180,7 +1156,7 @@ bot.onText(/-Back to Computer/, (msg) => {
         ['Word'],
         ['PowerPoint'],
         ['Excel'],
-        ['Back to 2nd Sem.', 'Back to MainMenu']
+        ['Back to 2nd Semester', 'Back to MainMenu']
       ],
       resize_keyboard: true,
     },
