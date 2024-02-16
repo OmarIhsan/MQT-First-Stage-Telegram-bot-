@@ -18,43 +18,42 @@ app.get("/", (req, res) => {
 });
 
 server.listen(3000, () => {}); // Opening the 3000 port
-// Define the initial keyboard 
-// Define the initial keyboard
-const mainMenu = {
-  reply_markup: {
-    keyboard: [
-      ['1st Semester'],
-      ['2nd Semester'],
-    ],
-    resize_keyboard: true,
-    one_time_keyboard: true,
-  },
-};
+
 
 
 // Register the '/start' command
 bot.onText(/\/start/, (msg) => {
   const chatId = msg.chat.id;
-  const userId = msg.from.id;
-  const channelName = "MedicalQuizzesTeam";
 
-  bot
-    .getChatMember(`@MedicalQuizzesTeam`, userId)
-    .then((result) => {
-      if (
-        result.status === "member" ||
-        result.status === "creator" ||
-        result.status === "administrator"
-      ) {
-        bot.sendMessage(chatId, "Please select a Semester", mainMenu);
-      } else {
-        bot.sendMessage(chatId, "Please select a Semester", mainMenu);
-      }
-    })
-    .catch((error) => {
-      console.log(error);
-      bot.sendMessage(chatId, "Please select a Semester", mainMenu);
-    });
+  const mainKeyboard = {
+    reply_markup: {
+      keyboard: [
+        ['1st Semester'],
+        ['2nd Semester'],
+      ],
+      resize_keyboard: true,
+    },
+  };
+
+  bot.sendMessage(chatId, 'Please select a Semester', mainKeyboard);
+
+});
+
+bot.onText(/Back to MainMenu/, (msg) => {
+  const chatId = msg.chat.id;
+
+  const mainKeyboard = {
+    reply_markup: {
+      keyboard: [
+        ['1st Semester'],
+        ['2nd Semester'],
+      ],
+      resize_keyboard: true,
+    },
+  };
+
+  bot.sendMessage(chatId, 'Please select a topic:', mainKeyboard);
+
 });
 
 bot.onText(/1st Semester/, (msg) => {
@@ -1070,23 +1069,7 @@ bot.onText(/Excel Lec. 3 & 4/, (msg) => {
 
 
 
-bot.onText(/Back to MainMenu/, (msg) => {
-  const chatId = msg.chat.id;
-
-  const mainKeyboard = {
-    reply_markup: {
-      keyboard: [
-        ['1st Semester'],
-        ['2nd Semester'],
-      ],
-      resize_keyboard: true,
-    },
-  };
-
-  bot.sendMessage(chatId, 'Please select a topic:', mainKeyboard);
-
-});
-
+b
 
 bot.onText(/-Back to Anatomy/, (msg) => {
   const chatId = msg.chat.id;
